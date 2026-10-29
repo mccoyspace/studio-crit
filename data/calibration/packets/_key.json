@@ -1,0 +1,157 @@
+{
+  "P01": {
+    "source": "R01",
+    "kind": "response",
+    "method": "C"
+  },
+  "P02": {
+    "source": "R06",
+    "kind": "response",
+    "method": "B"
+  },
+  "P03": {
+    "source": "R15",
+    "kind": "response",
+    "method": "A"
+  },
+  "P04": {
+    "source": "K1",
+    "kind": "fluent_failure",
+    "method": "image"
+  },
+  "P05": {
+    "source": "R10",
+    "kind": "response",
+    "method": "C"
+  },
+  "P06": {
+    "source": "R09",
+    "kind": "response",
+    "method": "A"
+  },
+  "P07": {
+    "source": "R21",
+    "kind": "response",
+    "method": "B"
+  },
+  "P08": {
+    "source": "R11",
+    "kind": "response",
+    "method": "C"
+  },
+  "P09": {
+    "source": "R08",
+    "kind": "response",
+    "method": "C"
+  },
+  "P10": {
+    "source": "R04",
+    "kind": "response",
+    "method": "C"
+  },
+  "P11": {
+    "source": "R24",
+    "kind": "response",
+    "method": "A"
+  },
+  "P12": {
+    "source": "R14",
+    "kind": "response",
+    "method": "C"
+  },
+  "P13": {
+    "source": "R23",
+    "kind": "response",
+    "method": "C"
+  },
+  "P14": {
+    "source": "R19",
+    "kind": "response",
+    "method": "C"
+  },
+  "P15": {
+    "source": "R13",
+    "kind": "response",
+    "method": "C"
+  },
+  "P16": {
+    "source": "R17",
+    "kind": "response",
+    "method": "T"
+  },
+  "P17": {
+    "source": "K5",
+    "kind": "statement_swap",
+    "method": "image",
+    "base_response": "R21",
+    "swap": "overclaims"
+  },
+  "P18": {
+    "source": "R05",
+    "kind": "response",
+    "method": "C"
+  },
+  "P19": {
+    "source": "R12",
+    "kind": "response",
+    "method": "B"
+  },
+  "P20": {
+    "source": "R18",
+    "kind": "response",
+    "method": "T"
+  },
+  "P21": {
+    "source": "K2",
+    "kind": "fluent_failure",
+    "method": "image"
+  },
+  "P22": {
+    "source": "R16",
+    "kind": "response",
+    "method": "T"
+  },
+  "P23": {
+    "source": "K4",
+    "kind": "statement_swap",
+    "method": "image",
+    "base_response": "R08",
+    "swap": "explains_away"
+  },
+  "P24": {
+    "source": "K6",
+    "kind": "repeat",
+    "method": "image",
+    "base_response": "R04"
+  },
+  "P25": {
+    "source": "R22",
+    "kind": "response",
+    "method": "C"
+  },
+  "P26": {
+    "source": "R02",
+    "kind": "response",
+    "method": "C"
+  },
+  "P27": {
+    "source": "R07",
+    "kind": "response",
+    "method": "C"
+  },
+  "P28": {
+    "source": "K3",
+    "kind": "slogan",
+    "method": "image"
+  },
+  "P29": {
+    "source": "R20",
+    "kind": "response",
+    "method": "C"
+  },
+  "P30": {
+    "source": "R03",
+    "kind": "response",
+    "method": "A"
+  }
+}

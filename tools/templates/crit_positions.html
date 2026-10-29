@@ -1,0 +1,313 @@
+<title>Crit Positions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one statement at a time on a pinned board; theme rail on top, verdict bar below the card. */
+:root {
+  --bg: #e9ebee;        /* pinboard grey, slight blue */
+  --paper: #fbfbfa;
+  --ink: #1d2126;
+  --muted: #5f6873;
+  --rule: #c9ced5;
+  --accent: #2f4fd1;    /* ultramarine pin */
+  --agree: #1f7a4d;
+  --disagree: #b3362f;
+  --depends: #9a6a00;
+  --skip: #6b7280;
+  --display: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --ui: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15181c; --paper: #1e2228; --ink: #e6e8eb; --muted: #9aa3ae; --rule: #343a42;
+  --accent: #8ea2ff; --agree: #5cc28e; --disagree: #ef7d74; --depends: #e3b54a; --skip: #9aa3ae; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15181c; --paper: #1e2228; --ink: #e6e8eb; --muted: #9aa3ae; --rule: #343a42;
+  --accent: #8ea2ff; --agree: #5cc28e; --disagree: #ef7d74; --depends: #e3b54a; --skip: #9aa3ae; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--ui); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: 1.9rem; margin: 0; letter-spacing: -0.01em; }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 62ch; }
+.status { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.status.warn { color: var(--disagree); }
+
+.themes { display: flex; flex-wrap: wrap; gap: 8px; }
+.theme { font: inherit; font-size: 0.85rem; border: 1px solid var(--rule); background: transparent; color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.theme[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.theme .n { font-family: var(--mono); font-size: 0.75rem; opacity: 0.75; font-variant-numeric: tabular-nums; }
+.theme:focus-visible, button:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.progress { height: 4px; background: var(--rule); border-radius: 2px; overflow: hidden; display: flex; }
+.progress span { display: block; height: 100%; }
+
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 26px 28px 22px;
+  box-shadow: 0 1px 0 var(--rule); display: grid; gap: 14px; min-width: 0; position: relative; }
+.card::before { content: ""; position: absolute; top: -7px; left: 50%; width: 12px; height: 12px; margin-left: -6px;
+  border-radius: 50%; background: var(--accent); box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--muted); align-items: baseline; }
+.meta .id { font-family: var(--mono); }
+.meta .type { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; font-size: 0.72rem; color: var(--accent); }
+.label { font-family: var(--display); font-size: 1.45rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+.question { font-size: 0.85rem; color: var(--muted); font-style: italic; margin: 0; }
+.text { font-family: var(--display); font-size: 1.02rem; line-height: 1.65; margin: 0; max-width: 68ch;
+  white-space: pre-wrap; overflow-wrap: anywhere; }
+.text.clamped { max-height: 15.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.more { justify-self: start; font: inherit; font-size: 0.82rem; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
+
+.verdicts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.v { font: inherit; font-weight: 600; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink);
+  border-radius: 4px; padding: 10px 6px; cursor: pointer; display: grid; gap: 2px; justify-items: center; }
+.v kbd { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); font-weight: 400; }
+.v[data-v="agree"][aria-pressed="true"] { background: var(--agree); border-color: var(--agree); color: var(--paper); }
+.v[data-v="disagree"][aria-pressed="true"] { background: var(--disagree); border-color: var(--disagree); color: var(--paper); }
+.v[data-v="depends"][aria-pressed="true"] { background: var(--depends); border-color: var(--depends); color: var(--paper); }
+.v[data-v="skip"][aria-pressed="true"] { background: var(--skip); border-color: var(--skip); color: var(--paper); }
+.v[aria-pressed="true"] kbd { color: inherit; opacity: .8; }
+
+.row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; }
+.matters { font: inherit; font-size: 0.88rem; background: none; border: 1px solid var(--rule); color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.matters[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 0.92rem; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 10px 12px; min-height: 64px; resize: vertical; }
+.saved { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+.nav { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.nav button { font: inherit; font-size: 0.88rem; border: 1px solid var(--rule); background: transparent; color: var(--ink);
+  border-radius: 4px; padding: 7px 12px; cursor: pointer; }
+.nav button:disabled { opacity: .4; cursor: default; }
+.pos { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.keys { font-size: 0.78rem; color: var(--muted); }
+.keys kbd { font-family: var(--mono); border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; }
+
+.tally { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tally b { font-weight: 600; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: 1px; }
+
+@media (max-width: 520px) {
+  .card { padding: 20px 16px 18px; }
+  .label { font-size: 1.25rem; }
+  .verdicts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .keys { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Crit Positions</h1>
+      <p class="sub">Rules and principles from <i>I Like Your Work</i> and <i>Draw It with Your Eyes Closed</i>. Mark where you stand on each. Your answers become the positions in your judgement card.</p>
+    </div>
+    <div class="status" id="status" role="status">Connecting…</div>
+  </header>
+
+  <nav class="themes" id="themes" aria-label="Themes"></nav>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="tally" id="tally"></div>
+
+  <article class="card" id="card" aria-live="polite">
+    <div class="meta"><span class="type" id="m-type"></span><span id="m-who"></span><span id="m-book"></span><span class="id" id="m-id"></span></div>
+    <h2 class="label" id="m-label"></h2>
+    <p class="question" id="m-q" hidden></p>
+    <p class="text" id="m-text"></p>
+    <button class="more" id="more" hidden>Show full text</button>
+
+    <div class="verdicts" role="group" aria-label="Your position">
+      <button class="v" data-v="agree" id="v-agree" aria-pressed="false">Agree<kbd>1</kbd></button>
+      <button class="v" data-v="disagree" id="v-disagree" aria-pressed="false">Disagree<kbd>2</kbd></button>
+      <button class="v" data-v="depends" id="v-depends" aria-pressed="false">Depends<kbd>3</kbd></button>
+      <button class="v" data-v="skip" id="v-skip" aria-pressed="false">Not relevant<kbd>0</kbd></button>
+    </div>
+    <div class="row">
+      <button class="matters" id="matters" aria-pressed="false">★ This matters to me <span class="keys"><kbd>M</kbd></span></button>
+      <span class="saved" id="saved"></span>
+    </div>
+    <label class="keys" for="note">Note (why, or on what it depends) · <kbd>N</kbd> to focus, <kbd>Esc</kbd> to leave</label>
+    <textarea id="note" placeholder="Optional. One line is plenty."></textarea>
+  </article>
+
+  <div class="nav">
+    <button id="prev">← Previous</button>
+    <span class="pos" id="pos"></span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button id="next">Next →</button>
+      <button id="nextOpen">Next unanswered</button>
+    </div>
+  </div>
+  <p class="keys">Keys: <kbd>1</kbd> agree · <kbd>2</kbd> disagree · <kbd>3</kbd> depends · <kbd>0</kbd> not relevant · <kbd>M</kbd> matters · <kbd>←</kbd> <kbd>→</kbd> move. Choosing a position moves on to the next unanswered statement.</p>
+</div>
+
+<script>
+const UNITS = /*UNITS*/[];
+const THEMES = /*THEMES*/[];
+if (!UNITS.length || !THEMES.length) {
+  document.getElementById("status").textContent = "This is the unbuilt template. Build it with tools/build_reactions_page.py, or open the published page.";
+  throw new Error("unbuilt template");
+}
+const COLORS = { agree: "var(--agree)", disagree: "var(--disagree)", depends: "var(--depends)", skip: "var(--skip)" };
+const LS_KEY = "crit-positions-v1";
+
+let db = null, col = null;
+let localApi = false;          // true when served by tools/serve_positions.py
+let reactions = {};            // unit id -> {verdict, note, matters}
+let theme = THEMES[0].id;
+let idx = 0;
+let expanded = false;
+const writeChains = {};        // one write at a time per document
+
+const $ = (id) => document.getElementById(id);
+const inTheme = () => UNITS.filter(u => theme === "all" || u.theme === theme);
+
+function loadLocal() { try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; } }
+function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(reactions)); } catch {} }
+
+function setStatus(text, warn) { const s = $("status"); s.textContent = text; s.classList.toggle("warn", !!warn); }
+
+function persist(id) {
+  const r = reactions[id]; saveLocal();
+  if (!col && !localApi) return;
+  $("saved").textContent = "Saving…";
+  const body = { unit: id, verdict: r.verdict || null, note: r.note || "", matters: !!r.matters, updated: new Date().toISOString() };
+  const write = localApi
+    ? () => fetch("api/reactions/" + encodeURIComponent(id), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(res => { if (!res.ok) throw new Error("server said " + res.status); })
+    : () => col.doc(id).set(body);
+  writeChains[id] = (writeChains[id] || Promise.resolve()).then(write).then(
+    () => { if (UNITS[currentIndex()]?.id === id) $("saved").textContent = "Saved"; },
+    (e) => { $("saved").textContent = "Not saved: " + (e && e.message || "error"); setStatus("Saving failed. Your answers are kept in this browser only.", true); }
+  );
+}
+function currentIndex() { const list = inTheme(); return list[idx] ? UNITS.indexOf(list[idx]) : -1; }
+
+function renderThemes() {
+  const nav = $("themes"); nav.textContent = "";
+  for (const t of [...THEMES, { id: "all", label: "All" }]) {
+    const list = UNITS.filter(u => t.id === "all" || u.theme === t.id);
+    const done = list.filter(u => reactions[u.id]?.verdict).length;
+    const b = document.createElement("button");
+    b.className = "theme"; b.setAttribute("aria-pressed", String(t.id === theme)); b.id = "theme-" + t.id;
+    b.append(t.label + " ");
+    const n = document.createElement("span"); n.className = "n"; n.textContent = done + "/" + list.length; b.append(n);
+    b.onclick = () => { theme = t.id; idx = firstOpen(); expanded = false; render(); };
+    nav.append(b);
+  }
+}
+function renderProgress() {
+  const list = inTheme(), p = $("progress"); p.textContent = "";
+  const counts = { agree: 0, disagree: 0, depends: 0, skip: 0 };
+  list.forEach(u => { const v = reactions[u.id]?.verdict; if (v) counts[v]++; });
+  for (const k of Object.keys(counts)) { const s = document.createElement("span"); s.style.width = (100 * counts[k] / list.length) + "%"; s.style.background = COLORS[k]; p.append(s); }
+  const all = { agree: 0, disagree: 0, depends: 0, skip: 0 }, m = Object.values(reactions).filter(r => r.matters).length;
+  Object.values(reactions).forEach(r => { if (r.verdict) all[r.verdict]++; });
+  const total = Object.values(all).reduce((a, b) => a + b, 0);
+  const t = $("tally"); t.textContent = "";
+  const add = (label, n, color) => { const s = document.createElement("span"); if (color) { const d = document.createElement("span"); d.className = "dot"; d.style.background = color; s.append(d); } const b = document.createElement("b"); b.textContent = n; s.append(b, " " + label); t.append(s); };
+  add("of " + UNITS.length + " answered", total);
+  add("agree", all.agree, COLORS.agree); add("disagree", all.disagree, COLORS.disagree);
+  add("depends", all.depends, COLORS.depends); add("not relevant", all.skip, COLORS.skip); add("marked ★", m);
+}
+function renderCard() {
+  const list = inTheme(); idx = Math.max(0, Math.min(idx, list.length - 1));
+  const u = list[idx]; if (!u) return;
+  const r = reactions[u.id] || {};
+  $("m-type").textContent = u.type; $("m-who").textContent = u.contributor; $("m-book").textContent = u.book;
+  $("m-id").textContent = u.id; $("m-label").textContent = u.label;
+  $("m-q").hidden = !u.question; $("m-q").textContent = u.question ? "Answering: " + u.question : "";
+  const tx = $("m-text"); tx.textContent = u.text; tx.hidden = !u.text;  // no text in the public version: the label stands alone
+  const long = u.text.length > 900; tx.classList.toggle("clamped", long && !expanded);
+  $("more").hidden = !long; $("more").textContent = expanded ? "Show less" : "Show full text";
+  for (const v of ["agree", "disagree", "depends", "skip"]) $("v-" + v).setAttribute("aria-pressed", String(r.verdict === v));
+  $("matters").setAttribute("aria-pressed", String(!!r.matters));
+  if (document.activeElement !== $("note")) $("note").value = r.note || "";
+  $("saved").textContent = r.verdict ? (col ? "Saved" : "Saved in this browser") : "";
+  $("pos").textContent = (idx + 1) + " / " + list.length;
+  $("prev").disabled = idx === 0; $("next").disabled = idx >= list.length - 1;
+}
+function render() { renderThemes(); renderProgress(); renderCard(); }
+
+function firstOpen(from = 0) {
+  const list = inTheme();
+  for (let i = 0; i < list.length; i++) { const j = (from + i) % list.length; if (!reactions[list[j].id]?.verdict) return j; }
+  return Math.min(from, list.length - 1);
+}
+function choose(v) {
+  const u = inTheme()[idx]; if (!u) return;
+  const r = reactions[u.id] = { ...(reactions[u.id] || {}) };
+  r.verdict = v; r.note = $("note").value; persist(u.id);
+  render();
+  setTimeout(() => { idx = firstOpen(idx + 1); expanded = false; render(); }, 260);
+}
+function toggleMatters() {
+  const u = inTheme()[idx]; if (!u) return;
+  const r = reactions[u.id] = { ...(reactions[u.id] || {}) }; r.matters = !r.matters; r.note = $("note").value; persist(u.id); render();
+}
+let noteTimer = null;
+$("note").addEventListener("input", () => {
+  const u = inTheme()[idx]; if (!u) return;
+  reactions[u.id] = { ...(reactions[u.id] || {}), note: $("note").value };
+  clearTimeout(noteTimer); noteTimer = setTimeout(() => persist(u.id), 700);
+});
+$("note").addEventListener("blur", () => { const u = inTheme()[idx]; if (u && noteTimer) { clearTimeout(noteTimer); noteTimer = null; persist(u.id); } });
+for (const v of ["agree", "disagree", "depends", "skip"]) $("v-" + v).onclick = () => choose(v);
+$("matters").onclick = toggleMatters;
+$("more").onclick = () => { expanded = !expanded; renderCard(); };
+$("prev").onclick = () => { idx--; expanded = false; renderCard(); };
+$("next").onclick = () => { idx++; expanded = false; renderCard(); };
+$("nextOpen").onclick = () => { idx = firstOpen(idx + 1); expanded = false; renderCard(); };
+document.addEventListener("keydown", (e) => {
+  if (e.target === $("note")) { if (e.key === "Escape") $("note").blur(); return; }
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const map = { "1": "agree", "2": "disagree", "3": "depends", "0": "skip" };
+  if (map[e.key]) { e.preventDefault(); choose(map[e.key]); }
+  else if (e.key === "m" || e.key === "M") { e.preventDefault(); toggleMatters(); }
+  else if (e.key === "n" || e.key === "N") { e.preventDefault(); $("note").focus(); }
+  else if (e.key === "ArrowRight") { if (idx < inTheme().length - 1) { idx++; expanded = false; renderCard(); } }
+  else if (e.key === "ArrowLeft") { if (idx > 0) { idx--; expanded = false; renderCard(); } }
+});
+
+reactions = loadLocal();
+idx = firstOpen();
+render();
+
+(async () => {
+  // Served by the local server: save answers to its JSON file instead of claude.ai.
+  if (location.protocol.startsWith("http") && ["localhost", "127.0.0.1"].includes(location.hostname)) {
+    try {
+      const res = await fetch("api/reactions");
+      if (res.ok) {
+        const remote = await res.json();
+        localApi = true;
+        for (const [id, r] of Object.entries(reactions)) if (!remote[id] && (r.verdict || r.note || r.matters)) { remote[id] = r; reactions[id] = r; persist(id); }
+        for (const [id, b] of Object.entries(remote)) reactions[id] = { verdict: b.verdict || undefined, note: b.note || "", matters: !!b.matters };
+        setStatus("Saving to data/positions/reactions.json");
+        saveLocal(); render();
+        return;
+      }
+    } catch {}
+  }
+  try { db = window.claude ? await window.claude.use("db") : null; } catch { db = null; }
+  if (!db) { setStatus("Saving in this browser only. Open the page signed in to claude.ai to save for Claude.", true); return; }
+  col = db.collection("reactions");
+  setStatus("Saving to your judgement card");
+  let first = true;
+  col.onSnapshot((snap) => {
+    const remote = {};
+    snap.docs.forEach(d => { const b = d.data(); if (b) remote[d.id] = { verdict: b.verdict || undefined, note: b.note || "", matters: !!b.matters }; });
+    if (first) {
+      first = false;
+      // carry over anything answered in this browser before saving was available
+      for (const [id, r] of Object.entries(reactions)) if (!remote[id] && (r.verdict || r.note || r.matters)) { remote[id] = r; reactions[id] = r; persist(id); }
+    }
+    const editing = document.activeElement === $("note") ? inTheme()[idx]?.id : null;
+    for (const [id, r] of Object.entries(remote)) if (id !== editing) reactions[id] = r;
+    saveLocal(); render();
+  }, () => setStatus("Lost connection to saved answers. New answers are kept in this browser.", true));
+})();
+</script>

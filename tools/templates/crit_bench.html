@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calibration Crit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one packet at a time. Work on the left (or top), the crit steps beside it, in crit order. */
+:root {
+  --bg: #e9ebee; --paper: #fbfbfa; --ink: #1d2126; --muted: #5f6873; --rule: #c9ced5;
+  --accent: #2f4fd1; --yes: #1f7a4d; --no: #b3362f; --warn: #9a6a00; --wall: #f3f3f1;
+  --display: "Libre Caslon Text", Georgia, serif;
+  --ui: "Work Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #15181c; --paper: #1e2228; --ink: #e6e8eb; --muted: #9aa3ae; --rule: #343a42;
+  --accent: #8ea2ff; --yes: #5cc28e; --no: #ef7d74; --warn: #e3b54a; --wall: #24282f; color-scheme: dark } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--ui); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 20px max(16px, env(safe-area-inset-left)) 60px; display: grid; gap: 16px; }
+header { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; }
+h1 { font-family: var(--display); font-size: 1.7rem; margin: 0; }
+.sub { color: var(--muted); margin: 2px 0 0; max-width: 70ch; font-size: 0.92rem; }
+.status { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.status.warn { color: var(--no); }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { font: inherit; font-size: 0.86rem; border: 1px solid var(--rule); background: transparent; color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.tab[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tab .n { font-family: var(--mono); font-size: 0.75rem; opacity: .75; margin-left: 6px; }
+.strip { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { font: 500 0.78rem var(--mono); border: 1px solid var(--rule); background: var(--paper); color: var(--ink);
+  border-radius: 4px; padding: 3px 7px; cursor: pointer; }
+.pill.done { background: var(--yes); color: var(--paper); border-color: var(--yes); }
+.pill.started { border-color: var(--warn); }
+.pill[aria-current="true"] { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.packet { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .packet { grid-template-columns: 1fr; } }
+.work { background: var(--wall); border: 1px solid var(--rule); border-radius: 4px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.assignment { font-family: var(--display); font-size: 1.05rem; margin: 0; }
+.assignment small { display: block; font: 600 0.72rem var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.work img { width: 100%; height: auto; max-height: 78vh; object-fit: contain; display: block; background: #0001; border-radius: 2px; }
+.work a.full { font-size: 0.8rem; color: var(--accent); }
+.worktext { font-family: var(--display); font-size: 1rem; line-height: 1.7; white-space: pre-wrap; max-height: 78vh; overflow: auto;
+  background: var(--paper); border: 1px solid var(--rule); padding: 18px 20px; border-radius: 2px; }
+
+.steps { display: grid; gap: 12px; min-width: 0; }
+.step { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; display: grid; gap: 10px; }
+.step h2 { font: 600 0.78rem var(--ui); letter-spacing: .08em; text-transform: uppercase; margin: 0; color: var(--muted); }
+.step.locked { opacity: .8; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.choice { font: inherit; font-weight: 600; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink);
+  border-radius: 4px; padding: 7px 12px; cursor: pointer; }
+.choice:disabled { cursor: default; }
+.choice[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.choice.yes[aria-pressed="true"] { background: var(--yes); border-color: var(--yes); }
+.choice.no[aria-pressed="true"] { background: var(--no); border-color: var(--no); }
+.scale { display: grid; grid-template-columns: 9.5em repeat(5, minmax(0, 2.4em)); gap: 4px; align-items: center; }
+.scale span { font-size: 0.9rem; }
+.scale .choice { padding: 5px 0; font-family: var(--mono); font-weight: 500; }
+.scale .ends { grid-column: 2 / -1; display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); }
+input[type=text], textarea { width: 100%; font: inherit; font-size: 0.92rem; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; }
+textarea { min-height: 54px; resize: vertical; }
+input:disabled { opacity: .75; }
+label.lab { font-size: 0.82rem; color: var(--muted); display: grid; gap: 4px; }
+.reveal { font: inherit; font-weight: 600; background: var(--accent); color: var(--paper); border: 0; border-radius: 4px; padding: 9px 14px; cursor: pointer; justify-self: start; }
+.reveal:disabled { opacity: .45; cursor: default; }
+.stmt-title { font-family: var(--display); font-weight: 700; font-size: 1.05rem; margin: 0; }
+.stmt { font-family: var(--display); font-size: 0.97rem; line-height: 1.65; white-space: pre-wrap; margin: 0; max-height: 40vh; overflow: auto; }
+.note { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.nav { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.nav button { font: inherit; border: 1px solid var(--rule); background: transparent; color: var(--ink); border-radius: 4px; padding: 7px 12px; cursor: pointer; }
+.saved { font: 0.75rem var(--mono); color: var(--muted); }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.rank-group { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; display: grid; gap: 10px; }
+.rank-group h3 { font-family: var(--display); font-size: 1rem; margin: 0; }
+.rank-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.rank-item { display: grid; gap: 6px; border: 1px solid var(--rule); border-radius: 4px; padding: 8px; background: var(--wall); }
+.rank-item img { width: 100%; height: 150px; object-fit: contain; }
+.rank-item .snip { font-family: var(--display); font-size: 0.8rem; height: 150px; overflow: hidden; white-space: pre-wrap; }
+.rank-item .choice { padding: 3px 9px; font-family: var(--mono); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Calibration Crit</h1>
+      <p class="sub">Judge each packet in crit order: the work alone first, then the statement, then your feedback. Once you read the statement, your first verdict locks; use the revised verdict if it changes your mind.</p>
+    </div>
+    <div class="status" id="status">Loading…</div>
+  </header>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="strip" id="strip"></div>
+  <main id="main"></main>
+</div>
+
+<script>
+let SITTINGS = ["1", "2", "3"], PACKETS = [], GROUPS = {}, DATA = { verdicts: {}, rankings: {} };
+let view = "1", current = null;
+const $ = (id) => document.getElementById(id);
+const el = (tag, props = {}, ...kids) => { const e = document.createElement(tag); Object.assign(e, props); for (const k of kids) e.append(k); return e; };
+// The card being calibrated sets the scores (served at api/config); these defaults are the original crit's.
+let SCORES = [["new_ground", "New ground"], ["form_content", "Form–content"], ["holding", "Holding power"]];
+let CONFIG = { score_all: false, store: "cards/kevin-mccoy/calibration/verdicts.json" };
+const EFFECTS = [["helps", "Helps"], ["neutral", "Neutral"], ["overclaims", "Overclaims"], ["explains_away", "Explains away"]];
+
+function v(pid) { return DATA.verdicts[pid] || (DATA.verdicts[pid] = { scores: {} }); }
+function isDone(pid) {
+  // without score_all, no impact ends the verdict (the gate), so the statement is optional there
+  const x = DATA.verdicts[pid]; if (!x || x.impact == null) return false;
+  if (x.impact === false && !CONFIG.score_all) return true;
+  return !!x.statement_revealed && (x.impact === false && !CONFIG.score_all || SCORES.every(([k]) => x.scores && x.scores[k] != null));
+}
+function isStarted(pid) { const x = DATA.verdicts[pid]; return !!x && (x.impact != null || !!x.impact_note); }
+
+let saveTimer = {};
+function save(pid, now) {
+  clearTimeout(saveTimer[pid]);
+  const go = () => fetch("api/verdicts/" + pid, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(DATA.verdicts[pid]) })
+    .then(r => { if (!r.ok) throw new Error(r.status); $("saved") && ($("saved").textContent = "Saved"); renderChrome(); })
+    .catch(e => { $("status").textContent = "Saving failed (" + e.message + "). Is the crit server still running?"; $("status").classList.add("warn"); });
+  if ($("saved")) $("saved").textContent = "Saving…";
+  if (now) go(); else saveTimer[pid] = setTimeout(go, 600);
+}
+
+function renderChrome() {
+  const tabs = $("tabs"); tabs.textContent = "";
+  for (const s of SITTINGS) {
+    const list = PACKETS.filter(p => String(p.sitting) === s), d = list.filter(p => isDone(p.packet_id)).length;
+    const b = el("button", { className: "tab", id: "tab-" + s, onclick: () => { view = s; current = null; render(); } }, "Sitting " + s, el("span", { className: "n", textContent: d + "/" + list.length }));
+    b.setAttribute("aria-pressed", String(view === s)); tabs.append(b);
+  }
+  const ready = Object.values(GROUPS).filter(g => g.every(isDone)).length;
+  if (Object.keys(GROUPS).length) {
+  const rb = el("button", { className: "tab", id: "tab-rank", onclick: () => { view = "rank"; render(); } }, "Rankings", el("span", { className: "n", textContent: ready + "/" + Object.keys(GROUPS).length + " ready" }));
+  rb.setAttribute("aria-pressed", String(view === "rank")); tabs.append(rb);
+  }
+  const strip = $("strip"); strip.textContent = "";
+  if (view !== "rank") for (const p of PACKETS.filter(p => String(p.sitting) === view)) {
+    const b = el("button", { className: "pill" + (isDone(p.packet_id) ? " done" : isStarted(p.packet_id) ? " started" : ""), textContent: p.packet_id, onclick: () => { current = p.packet_id; render(); } });
+    b.setAttribute("aria-current", String(current === p.packet_id)); strip.append(b);
+  }
+  const total = PACKETS.filter(p => isDone(p.packet_id)).length;
+  $("status").classList.remove("warn"); $("status").textContent = total + " of " + PACKETS.length + " packets judged · saving to " + CONFIG.store;
+}
+
+function choiceRow(options, value, onPick, disabled, cls = "") {
+  const row = el("div", { className: "row" });
+  for (const [val, label] of options) {
+    const b = el("button", { className: "choice " + cls + (val === true ? " yes" : val === false ? " no" : ""), textContent: label, disabled, onclick: () => onPick(val) });
+    b.setAttribute("aria-pressed", String(value === val)); row.append(b);
+  }
+  return row;
+}
+
+function renderPacket(p) {
+  const pid = p.packet_id, x = v(pid), locked = !!x.statement_revealed;
+  const work = el("section", { className: "work" },
+    el("p", { className: "assignment" }, el("small", { textContent: "Packet " + pid + " · assignment" }), "“" + p.assignment_text + "”"));
+  if (p.images.length) for (const im of p.images) work.append(el("img", { src: "images/" + im, alt: "Work for packet " + pid }), el("a", { className: "full", href: "images/" + im, target: "_blank", textContent: "Open full size ↗" }));
+  else work.append(el("div", { className: "worktext", textContent: p.work_text }));
+
+  const steps = el("section", { className: "steps" });
+  // 1 · the work
+  const s1 = el("div", { className: "step" + (locked ? " locked" : "") }, el("h2", { textContent: "1 · The work" + (locked ? " (locked)" : "") }));
+  s1.append(el("div", { textContent: "Impact?" }), choiceRow([[true, "Yes"], [false, CONFIG.score_all ? "No" : "No, ends the verdict"]], x.impact, val => { x.impact = val; save(pid, true); render(); }, locked));
+  const imp = el("input", { type: "text", id: "impact-note", placeholder: "One line on the impact, or its absence", value: x.impact_note || "", disabled: locked });
+  imp.oninput = () => { x.impact_note = imp.value; save(pid); };
+  s1.append(imp);
+  if (x.impact === true || (x.impact === false && CONFIG.score_all)) {
+    for (const [k, label] of SCORES) {
+      const sc = el("div", { className: "scale" }, el("span", { textContent: label }));
+      for (const n of [0, 1, 2, 3, 4]) {
+        const b = el("button", { className: "choice", textContent: String(n), disabled: locked, onclick: () => { x.scores[k] = n; save(pid, true); render(); } });
+        b.setAttribute("aria-pressed", String(x.scores[k] === n)); sc.append(b);
+      }
+      sc.append(el("div", { className: "ends" }, el("span", { textContent: "absent" }), el("span", { textContent: "strong" })));
+      s1.append(sc);
+    }
+    const vd = el("input", { type: "text", id: "verdict", placeholder: "One-line verdict on the work", value: x.verdict || "", disabled: locked });
+    vd.oninput = () => { x.verdict = vd.value; save(pid); };
+    s1.append(vd);
+  }
+  const step1Done = (x.impact === false && !CONFIG.score_all) || (x.impact != null && SCORES.every(([k]) => x.scores[k] != null));
+  if (!locked) {
+    const r = el("button", { className: "reveal", textContent: "Read the statement →", disabled: !step1Done, onclick: () => { x.statement_revealed = true; x.revealed_at = new Date().toISOString(); save(pid, true); render(); } });
+    s1.append(r, el("p", { className: "note", textContent: step1Done ? "Revealing the statement locks this step." : "Decide on impact, and give the scores, first." }));
+  }
+  steps.append(s1);
+  // 2 · the statement
+  if (locked) {
+    const s2 = el("div", { className: "step" }, el("h2", { textContent: "2 · The statement" }));
+    if (p.title) s2.append(el("p", { className: "stmt-title", textContent: p.title }));
+    s2.append(el("p", { className: "stmt", textContent: p.statement || "(no statement)" }));
+    s2.append(el("div", { textContent: "What does the statement do?" }), choiceRow(EFFECTS, x.statement_effect, val => { x.statement_effect = val; save(pid, true); render(); }, false));
+    const rv = el("input", { type: "text", id: "revised", placeholder: "Revised verdict, if the statement changes it (optional)", value: x.revised_verdict || "" });
+    rv.oninput = () => { x.revised_verdict = rv.value; save(pid); };
+    s2.append(rv);
+    steps.append(s2);
+    // 3 · feedback
+    const s3 = el("div", { className: "step" }, el("h2", { textContent: "3 · Feedback to the maker" }));
+    const q = el("textarea", { id: "question", placeholder: "A question", value: x.question || "" }); q.oninput = () => { x.question = q.value; save(pid); };
+    const pv = el("textarea", { id: "provocation", placeholder: "A provocation", value: x.provocation || "" }); pv.oninput = () => { x.provocation = pv.value; save(pid); };
+    s3.append(el("label", { className: "lab" }, "Question", q), el("label", { className: "lab" }, "Provocation", pv));
+    steps.append(s3);
+  }
+  const list = PACKETS.filter(q => String(q.sitting) === view), i = list.findIndex(q => q.packet_id === pid);
+  const nav = el("div", { className: "nav" },
+    el("button", { textContent: "← Previous", disabled: i <= 0, onclick: () => { current = list[i - 1].packet_id; render(); } }),
+    el("span", { className: "saved", id: "saved" }),
+    el("button", { textContent: "Next packet →", disabled: i >= list.length - 1, onclick: () => { current = list[i + 1].packet_id; render(); } }));
+  steps.append(nav);
+  return el("div", { className: "packet" }, work, steps);
+}
+
+function renderRankings() {
+  const box = el("div", { style: "display:grid;gap:14px" }, el("p", { className: "sub", textContent: "Rank the distinct works for each assignment, 1 = strongest. Each group opens once all its packets are judged." }));
+  const byId = Object.fromEntries(PACKETS.map(p => [p.packet_id, p]));
+  for (const [key, ids] of Object.entries(GROUPS)) {
+    const ready = ids.every(isDone), r = DATA.rankings[key] || { ranks: {} };
+    const g = el("section", { className: "rank-group" }, el("h3", { textContent: "“" + byId[ids[0]].assignment_text + "”" + (ready ? "" : "  (not ready)") }));
+    const items = el("div", { className: "rank-items" });
+    for (const id of ids) {
+      const p = byId[id], it = el("div", { className: "rank-item" }, el("strong", { textContent: id }));
+      it.append(p.images.length ? el("img", { src: "images/" + p.images[0], alt: "Work " + id }) : el("div", { className: "snip", textContent: p.work_text.slice(0, 400) }));
+      const opts = ids.map((_, n) => [n + 1, String(n + 1)]);
+      it.append(choiceRow(opts, r.ranks[id], val => {
+        r.ranks[id] = val; DATA.rankings[key] = r;
+        fetch("api/rankings/" + key, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(r) }).then(() => renderChrome());
+        render();
+      }, !ready));
+      items.append(it);
+    }
+    g.append(items);
+    const used = Object.values(r.ranks); if (new Set(used).size !== used.length) g.append(el("p", { className: "note", textContent: "Two works share a rank." }));
+    box.append(g);
+  }
+  return box;
+}
+
+function render() {
+  renderChrome();
+  const main = $("main"); main.textContent = "";
+  if (view === "rank") { main.append(renderRankings()); return; }
+  const list = PACKETS.filter(p => String(p.sitting) === view);
+  if (!current || !list.some(p => p.packet_id === current)) current = (list.find(p => !isDone(p.packet_id)) || list[0]).packet_id;
+  renderChrome();
+  main.append(renderPacket(list.find(p => p.packet_id === current)));
+}
+
+Promise.all([fetch("api/packets").then(r => r.json()), fetch("api/verdicts").then(r => r.json()),
+             fetch("api/config").then(r => r.ok ? r.json() : null).catch(() => null)])
+  .then(([pk, vd, cfg]) => { if (cfg) { CONFIG = cfg; SCORES = cfg.scores; }
+    PACKETS = pk.packets; GROUPS = pk.ranking_groups; DATA = { verdicts: vd.verdicts || {}, rankings: vd.rankings || {} };
+    SITTINGS = [...new Set(PACKETS.map(p => String(p.sitting)))].sort(); const firstOpen = SITTINGS.find(s => PACKETS.some(p => String(p.sitting) === s && !isDone(p.packet_id))); view = firstOpen || (Object.keys(GROUPS).length ? "rank" : SITTINGS[0]); render(); })
+  .catch(e => { $("status").textContent = "Couldn't load packets: " + e.message; $("status").classList.add("warn"); });
+</script>
+</body>
+</html>

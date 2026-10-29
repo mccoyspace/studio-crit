@@ -1,0 +1,306 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title description">
+
+  <title id="title">The Distance Between Two Doors — Jane Smith</title>
+  <desc id="description">
+    An imagined portrait of Jane Smith (1936–2024),
+    the flight attendant who worked for 67 years.
+    An older woman stands between an aircraft window
+    and a small illuminated house, holding a golden
+    thread that connects her work to her home.
+  </desc>
+
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#111F35"></stop>
+      <stop offset=".52" stop-color="#253E55"></stop>
+      <stop offset="1" stop-color="#152333"></stop>
+    </linearGradient>
+
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#507F9A"></stop>
+      <stop offset=".48" stop-color="#D9A47B"></stop>
+      <stop offset="1" stop-color="#F7D8A0"></stop>
+    </linearGradient>
+
+    <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#42697A"></stop>
+      <stop offset=".48" stop-color="#25495B"></stop>
+      <stop offset="1" stop-color="#102C40"></stop>
+    </linearGradient>
+
+    <linearGradient id="skin" x1="0" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#EFC7A2"></stop>
+      <stop offset=".5" stop-color="#DDA47F"></stop>
+      <stop offset="1" stop-color="#AD6D59"></stop>
+    </linearGradient>
+
+    <radialGradient id="light">
+      <stop offset="0" stop-color="#FFE4AA" stop-opacity=".62"></stop>
+      <stop offset="1" stop-color="#FFE4AA" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <pattern id="grain" width="79" height="83" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="17" r="1" fill="#FFF3D7" opacity=".14"></circle>
+      <circle cx="49" cy="63" r=".8" fill="#FFF3D7" opacity=".18"></circle>
+      <path d="M30 39l3 -2 M68 12l-2 4" stroke="#C8BBA8" opacity=".16"></path>
+    </pattern>
+
+    <clipPath id="window">
+      <rect x="120" y="190" width="960" height="1030" rx="470"></rect>
+    </clipPath>
+  </defs>
+
+  <!-- The outer field -->
+  <rect width="1200" height="1500" fill="#E7D9BC"></rect>
+  <rect x="35" y="35" width="1130" height="1430" fill="url(#night)"></rect>
+  <rect x="35" y="35" width="1130" height="1430" fill="url(#grain)"></rect>
+
+  <!-- A window that could also be a halo -->
+  <rect x="102" y="172" width="996" height="1066" rx="490" fill="#C6A67D"></rect>
+  <rect x="115" y="185" width="970" height="1040" rx="480" fill="#1E3649"></rect>
+
+  <g clip-path="url(#window)">
+    <rect x="120" y="190" width="960" height="1030" fill="url(#sky)"></rect>
+
+    <!-- Receding horizons -->
+    <path d="M100 580 Q570 510 1100 590
+             L1100 700 Q600 615 100 710Z" fill="#F6C49C" opacity=".35"></path>
+    <path d="M100 760 Q520 690 1100 785" fill="none" stroke="#FFF0C8" stroke-width="3" opacity=".55"></path>
+
+    <!-- Sixty-seven years as a field of fine lines -->
+    <g stroke="#FFF2CF" stroke-width="1" opacity=".25">
+      <path d="M160 300H1040 M160 312H1040
+               M160 324H1040 M160 336H1040
+               M160 348H1040 M160 360H1040
+               M160 372H1040 M160 384H1040
+               M160 396H1040 M160 408H1040
+               M160 420H1040 M160 432H1040
+               M160 444H1040 M160 456H1040
+               M160 468H1040 M160 480H1040
+               M160 492H1040 M160 504H1040
+               M160 516H1040 M160 528H1040
+               M160 540H1040 M160 552H1040
+               M160 564H1040 M160 576H1040
+               M160 588H1040 M160 600H1040
+               M160 612H1040 M160 624H1040
+               M160 636H1040 M160 648H1040
+               M160 660H1040 M160 672H1040
+               M160 684H1040 M160 696H1040
+               M160 708H1040 M160 720H1040
+               M160 732H1040 M160 744H1040
+               M160 756H1040 M160 768H1040
+               M160 780H1040 M160 792H1040
+               M160 804H1040 M160 816H1040
+               M160 828H1040 M160 840H1040
+               M160 852H1040 M160 864H1040
+               M160 876H1040 M160 888H1040
+               M160 900H1040 M160 912H1040
+               M160 924H1040 M160 936H1040
+               M160 948H1040 M160 960H1040
+               M160 972H1040 M160 984H1040
+               M160 996H1040 M160 1008H1040
+               M160 1020H1040 M160 1032H1040
+               M160 1044H1040 M160 1056H1040
+               M160 1068H1040 M160 1080H1040
+               M160 1092H1040"></path>
+    </g>
+
+    <!-- The commute -->
+    <path d="M175 923
+             C285 770 395 813 485 885
+             S765 1023 944 829" fill="none" stroke="#F7DEA5" stroke-width="3" stroke-dasharray="4 13" opacity=".7"></path>
+
+    <!-- A modest house, not a destination abroad -->
+    <circle cx="905" cy="846" r="140" fill="url(#light)"></circle>
+    <path d="M853 865 L907 820 L961 865" fill="none" stroke="#F9E6B8" stroke-width="6" stroke-linejoin="round"></path>
+    <path d="M864 858V926H950V858" fill="#25475B" stroke="#F9E6B8" stroke-width="4"></path>
+    <rect x="895" y="871" width="25" height="55" fill="#FFD790"></rect>
+    <circle cx="914" cy="901" r="2" fill="#855B47"></circle>
+    <rect x="871" y="870" width="15" height="20" fill="#FFD790"></rect>
+
+    <!-- A woman's presence, invented from words -->
+    <ellipse cx="595" cy="1215" rx="360" ry="100" fill="#14293B" opacity=".48"></ellipse>
+
+    <!-- Coat silhouette -->
+    <path d="M398 899
+             Q335 925 304 1020
+             L240 1300
+             Q600 1400 973 1300
+             L894 1015
+             Q858 929 763 899
+             L695 870 L486 872Z" fill="url(#coat)" stroke="#132E40" stroke-width="8"></path>
+
+    <!-- Collar and neck -->
+    <path d="M521 813 L516 913
+             Q593 990 682 911
+             L679 817Z" fill="#C98B71"></path>
+
+    <path d="M497 879 L598 982
+             L530 1105 L410 912Z" fill="#F0DCC0"></path>
+    <path d="M700 878 L598 982
+             L671 1105 L793 911Z" fill="#E1C6A9"></path>
+
+    <path d="M411 914 L558 1125
+             L504 1314 L346 1292Z" fill="#31586C" opacity=".7"></path>
+    <path d="M791 914 L644 1125
+             L690 1321 L861 1295Z" fill="#193B50" opacity=".7"></path>
+
+    <!-- Hair, painted as layered silver ribbons -->
+    <path d="M438 648
+             Q406 484 508 414
+             Q581 356 679 405
+             Q789 434 778 608
+             L755 766
+             Q715 849 642 871
+             L486 846
+             Q416 786 438 648Z" fill="#66707A"></path>
+
+    <path d="M450 563
+             Q437 432 563 413
+             Q705 381 759 513
+             Q731 463 657 455
+             Q541 425 450 563Z" fill="#D8D1C6"></path>
+
+    <!-- Face: an imagined likeness -->
+    <path d="M456 580
+             Q468 474 580 461
+             Q694 455 738 550
+             L736 712
+             Q731 797 659 847
+             Q600 888 536 843
+             Q463 796 452 699Z" fill="url(#skin)" stroke="#A66D59" stroke-width="4"></path>
+
+    <!-- Shadow planes -->
+    <path d="M663 479
+             Q750 528 730 711
+             Q715 817 631 857
+             Q695 782 677 706
+             Q702 562 663 479Z" fill="#9C6255" opacity=".22"></path>
+
+    <!-- Ears -->
+    <path d="M455 647
+             Q422 626 425 674
+             Q426 728 461 734" fill="#C98C72" stroke="#A86C59" stroke-width="4"></path>
+    <path d="M734 647
+             Q766 630 762 677
+             Q761 722 729 731" fill="#C58A71" stroke="#A86C59" stroke-width="4"></path>
+
+    <!-- Hairline -->
+    <path d="M452 608
+             Q443 513 519 481
+             Q577 457 608 482
+             Q676 440 724 522
+             Q703 492 654 503
+             Q596 521 568 498
+             Q505 513 452 608Z" fill="#BFC0BB"></path>
+
+    <path d="M503 482 Q541 449 585 462
+             M612 473 Q670 445 710 503
+             M445 557 Q434 620 448 666" fill="none" stroke="#F0E5D4" stroke-width="9" opacity=".8" stroke-linecap="round"></path>
+
+    <!-- Eyebrows and soft eyes -->
+    <path d="M492 631 Q530 612 567 633
+             M626 633 Q663 614 705 631" fill="none" stroke="#77605A" stroke-width="7" stroke-linecap="round"></path>
+
+    <path d="M491 662 Q528 647 567 664
+             M626 664 Q665 647 707 662" fill="none" stroke="#694E4A" stroke-width="5" stroke-linecap="round"></path>
+
+    <ellipse cx="535" cy="660" rx="7" ry="9" fill="#374B52"></ellipse>
+    <ellipse cx="665" cy="660" rx="7" ry="9" fill="#374B52"></ellipse>
+    <circle cx="537" cy="657" r="2.5" fill="#FFF5E0"></circle>
+    <circle cx="667" cy="657" r="2.5" fill="#FFF5E0"></circle>
+
+    <!-- Age is present, not concealed -->
+    <g fill="none" stroke="#A96F5F" stroke-width="2.3" opacity=".65" stroke-linecap="round">
+      <path d="M474 667l-15 -9 M474 677l-14 3
+               M716 667l17 -9 M715 678l16 4"></path>
+      <path d="M491 696Q518 715 549 704
+               M641 704Q678 717 706 694"></path>
+      <path d="M502 742Q523 753 542 752
+               M655 754Q677 750 699 739"></path>
+      <path d="M537 815Q592 847 655 813"></path>
+      <path d="M499 597Q529 584 555 596
+               M644 596Q670 585 700 601"></path>
+    </g>
+
+    <!-- Nose and expressive half-smile -->
+    <path d="M601 667
+             Q583 727 592 737
+             Q602 744 619 735" fill="none" stroke="#9D6457" stroke-width="4" stroke-linecap="round"></path>
+
+    <path d="M547 779
+             Q597 810 652 777" fill="none" stroke="#894E4A" stroke-width="5" stroke-linecap="round"></path>
+    <path d="M558 781 Q600 798 640 783" fill="none" stroke="#F5CFB0" stroke-width="3"></path>
+
+    <!-- Small golden earrings -->
+    <circle cx="450" cy="720" r="8" fill="#F5D490"></circle>
+    <circle cx="740" cy="717" r="8" fill="#F5D490"></circle>
+
+    <!-- The hand is central: care rather than rank -->
+    <path d="M822 1100
+             Q785 1082 741 1066
+             Q708 1057 690 1035
+             Q672 1012 659 1022
+             Q647 1036 670 1063
+             L707 1091
+             Q662 1080 623 1065
+             Q600 1057 593 1071
+             Q586 1087 613 1099
+             L678 1129
+             Q650 1120 622 1118
+             Q599 1118 598 1132
+             Q598 1146 625 1153
+             L710 1185
+             Q773 1212 839 1170Z" fill="url(#skin)" stroke="#AA725D" stroke-width="5" stroke-linejoin="round"></path>
+
+    <path d="M675 1129L750 1156
+             M710 1092L780 1123" stroke="#A87560" stroke-width="3" fill="none" opacity=".6"></path>
+
+    <!-- A gold thread held between duty and home -->
+    <path d="M742 1120
+             C848 1132 970 1076 999 976
+             C1023 891 954 823 903 844" stroke="#FFE0A0" stroke-width="5" fill="none" stroke-linecap="round"></path>
+
+    <!-- The other sleeve -->
+    <path d="M313 1056 Q289 1187 259 1302
+             L431 1325 455 1176" fill="#1B4055" opacity=".88"></path>
+
+    <!-- Wings without an airline logo -->
+    <g transform="translate(601 1092)">
+      <path d="M-86 0 Q-37 -19 -12 -4
+               L0 5 L12 -4
+               Q38 -19 86 0
+               Q42 15 15 13
+               L0 26 L-15 13
+               Q-43 15 -86 0Z" fill="#E9C48B"></path>
+      <circle cx="0" cy="5" r="8" fill="#F8E2AC"></circle>
+    </g>
+
+    <!-- Small stars: more like distant passengers -->
+    <g fill="#FFF0D3" opacity=".85">
+      <circle cx="270" cy="394" r="3"></circle>
+      <circle cx="896" cy="420" r="3"></circle>
+      <circle cx="319" cy="609" r="2"></circle>
+      <circle cx="842" cy="577" r="2.5"></circle>
+      <circle cx="212" cy="791" r="2"></circle>
+      <circle cx="983" cy="661" r="2"></circle>
+    </g>
+  </g>
+
+  <!-- Frame inscriptions -->
+  <text x="600" y="112" font-family="Georgia, 'Times New Roman', serif" font-size="25" letter-spacing="8" fill="#E9D5AE" text-anchor="middle">
+    THE DISTANCE BETWEEN TWO DOORS
+  </text>
+
+  <path d="M150 1328H1050" stroke="#C4A375" stroke-width="1" opacity=".7"></path>
+
+  <text x="600" y="1382" font-family="Georgia, 'Times New Roman', serif" font-size="43" letter-spacing="5" text-anchor="middle" fill="#F2DFC0">
+    JANE SMITH
+  </text>
+
+  <text x="600" y="1420" font-family="Georgia, 'Times New Roman', serif" font-size="19" letter-spacing="5" text-anchor="middle" fill="#D7BF9A">
+    1936 — 2024  ·  67 YEARS IN THE AIR
+  </text>
+
+  <path d="M68 68H1132V1432H68Z" fill="none" stroke="#D4BB91" stroke-width="1.5" opacity=".8"></path>
+</svg>

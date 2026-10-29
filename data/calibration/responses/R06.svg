@@ -1,0 +1,285 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+
+  <title>THE UNIVERSE HAS REQUESTED A MANAGER</title>
+  <desc>
+    A cosmic customer-service incident involving a
+    human mouth, a miniature office worker, a screaming
+    sun, a receipt, and an increasingly suspicious reality.
+  </desc>
+
+  <defs>
+    <radialGradient id="void">
+      <stop offset="0%" stop-color="#321044"></stop>
+      <stop offset="60%" stop-color="#150923"></stop>
+      <stop offset="100%" stop-color="#05030b"></stop>
+    </radialGradient>
+
+    <radialGradient id="skin" cx="42%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#ffe7b3"></stop>
+      <stop offset="45%" stop-color="#f5a97c"></stop>
+      <stop offset="80%" stop-color="#c85e75"></stop>
+      <stop offset="100%" stop-color="#61264e"></stop>
+    </radialGradient>
+
+    <radialGradient id="eye">
+      <stop offset="0%" stop-color="#fff"></stop>
+      <stop offset="68%" stop-color="#fff8d6"></stop>
+      <stop offset="100%" stop-color="#ed667c"></stop>
+    </radialGradient>
+
+    <radialGradient id="sun">
+      <stop offset="0%" stop-color="#fff8b5"></stop>
+      <stop offset="50%" stop-color="#ffc94e"></stop>
+      <stop offset="100%" stop-color="#ff483b"></stop>
+    </radialGradient>
+
+    <linearGradient id="tongue" x2="0.2" y2="1">
+      <stop stop-color="#ed618c"></stop>
+      <stop offset="1" stop-color="#8c2259"></stop>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="9"></feGaussianBlur>
+    </filter>
+
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#af5cc6" stroke-width="1" opacity=".22"></path>
+    </pattern>
+
+    <g id="star">
+      <path d="M0-11V11M-11 0H11" stroke="#fff5b5" stroke-width="2"></path>
+      <circle r="2.5" fill="white"></circle>
+    </g>
+
+    <g id="tooth">
+      <path d="M0 0Q-5 25 12 41Q25 48 30 34L36 0Z" fill="#fff6dc" stroke="#ce88a4" stroke-width="3"></path>
+    </g>
+
+    <clipPath id="mouthClip">
+      <ellipse cx="600" cy="730" rx="294" ry="194"></ellipse>
+    </clipPath>
+  </defs>
+
+  <!-- The unhelpful infinity of space -->
+  <rect width="1200" height="1200" fill="url(#void)"></rect>
+  <rect width="1200" height="1200" fill="url(#grid)"></rect>
+
+  <g opacity=".65">
+    <use href="#star" x="83" y="167"></use>
+    <use href="#star" x="1082" y="236"></use>
+    <use href="#star" x="178" y="881"></use>
+    <use href="#star" x="1055" y="960"></use>
+    <use href="#star" x="965" y="95"></use>
+    <use href="#star" x="252" y="294"></use>
+    <use href="#star" x="994" y="749"></use>
+    <use href="#star" x="106" y="1096"></use>
+  </g>
+
+  <!-- The celestial complaint department -->
+  <g transform="translate(940 368)">
+    <g stroke="#ff7f41" stroke-width="13" stroke-linecap="round">
+      <path d="M0-118V-89M0 89V118"></path>
+      <path d="M-118 0H-89M89 0H118"></path>
+      <path d="M-83-83L-63-63M63 63L83 83"></path>
+      <path d="M83-83L63-63M-63 63L-83 83"></path>
+    </g>
+    <circle r="94" fill="#ff632e" opacity=".4" filter="url(#glow)"></circle>
+    <circle r="88" fill="url(#sun)" stroke="#ff633c" stroke-width="6"></circle>
+    <ellipse cx="-30" cy="-16" rx="10" ry="23" fill="#442039"></ellipse>
+    <ellipse cx="30" cy="-16" rx="10" ry="23" fill="#442039"></ellipse>
+    <ellipse cy="40" rx="28" ry="38" fill="#481936"></ellipse>
+    <ellipse cy="46" rx="13" ry="19" fill="#ff7181"></ellipse>
+    <path d="M-48-53L-13-34M48-53L13-34" stroke="#6e2430" stroke-width="8" stroke-linecap="round"></path>
+  </g>
+
+  <g font-family="monospace" fill="#fff4a7" text-anchor="middle">
+    <text x="944" y="528" font-size="17">
+      THE SUN IS NOT
+    </text>
+    <text x="944" y="550" font-size="17">
+      AUTHORIZED TO HELP
+    </text>
+  </g>
+
+  <!-- Involuntary halo / loading wheel -->
+  <circle cx="585" cy="624" r="438" fill="none" stroke="#ec72bb" stroke-width="4" stroke-dasharray="9 24" opacity=".55" transform="rotate(-17 585 624)"></circle>
+  <circle cx="585" cy="624" r="462" fill="none" stroke="#80f4dc" stroke-width="2" stroke-dasharray="2 19" opacity=".55"></circle>
+
+  <!-- The face belonging to nobody in particular -->
+  <path d="M386 301
+           Q494 222 624 264
+           Q805 260 853 440
+           Q901 616 838 838
+           Q781 1007 608 1021
+           Q415 1046 336 866
+           Q258 685 322 476
+           Q337 350 386 301Z" fill="url(#skin)" stroke="#39152e" stroke-width="10"></path>
+
+  <!-- Ears receiving different realities -->
+  <path d="M325 563
+           Q215 489 238 647
+           Q253 746 325 728Z" fill="#ee967f" stroke="#632746" stroke-width="9"></path>
+  <path d="M846 564
+           Q960 482 947 645
+           Q933 735 849 742Z" fill="#ee967f" stroke="#632746" stroke-width="9"></path>
+
+  <path d="M283 614Q253 578 266 664" fill="none" stroke="#853952" stroke-width="9"></path>
+  <path d="M896 612Q931 565 918 664" fill="none" stroke="#853952" stroke-width="9"></path>
+
+  <!-- Eyes: awareness is a design flaw -->
+  <g>
+    <ellipse cx="446" cy="470" rx="96" ry="104" fill="url(#eye)" stroke="#71334c" stroke-width="10"></ellipse>
+    <ellipse cx="720" cy="467" rx="96" ry="104" fill="url(#eye)" stroke="#71334c" stroke-width="10"></ellipse>
+
+    <circle cx="462" cy="485" r="47" fill="#58cbb5"></circle>
+    <circle cx="703" cy="481" r="47" fill="#58cbb5"></circle>
+
+    <circle cx="466" cy="486" r="27" fill="#18122b"></circle>
+    <circle cx="698" cy="482" r="27" fill="#18122b"></circle>
+
+    <circle cx="449" cy="470" r="12" fill="white"></circle>
+    <circle cx="683" cy="464" r="12" fill="white"></circle>
+
+    <path d="M350 358Q450 308 534 371" fill="none" stroke="#3b173d" stroke-width="24" stroke-linecap="round"></path>
+    <path d="M640 370Q726 303 817 351" fill="none" stroke="#3b173d" stroke-width="24" stroke-linecap="round"></path>
+  </g>
+
+  <!-- A nose with a frankly unreasonable job -->
+  <path d="M581 477
+           Q550 575 568 596
+           Q590 613 615 595" fill="none" stroke="#a54c65" stroke-width="12" stroke-linecap="round"></path>
+
+  <!-- Mouth: not an organ, a workplace -->
+  <ellipse cx="600" cy="730" rx="312" ry="211" fill="#de6589" stroke="#692744" stroke-width="12"></ellipse>
+  <ellipse cx="600" cy="730" rx="294" ry="194" fill="#240a22"></ellipse>
+
+  <g clip-path="url(#mouthClip)">
+
+    <!-- Teeth as office architecture -->
+    <g transform="translate(326 541)">
+      <use href="#tooth" x="15" y="-15"></use>
+      <use href="#tooth" x="62" y="-3"></use>
+      <use href="#tooth" x="110" y="2"></use>
+      <use href="#tooth" x="160" y="8"></use>
+      <use href="#tooth" x="210" y="8"></use>
+      <use href="#tooth" x="260" y="2"></use>
+      <use href="#tooth" x="310" y="-3"></use>
+      <use href="#tooth" x="360" y="-15"></use>
+      <use href="#tooth" x="410" y="-21"></use>
+      <use href="#tooth" x="460" y="-27"></use>
+    </g>
+
+    <!-- Tongue, simultaneously rug and landscape -->
+    <path d="M332 865
+             Q416 754 591 793
+             Q739 761 873 858
+             L911 1000H300Z" fill="url(#tongue)"></path>
+    <path d="M595 821Q576 895 602 970" fill="none" stroke="#ff8ca7" stroke-width="10" opacity=".65"></path>
+
+    <!-- The cubicle -->
+    <path d="M474 774L474 668L725 668L725 774" fill="#8b73b4" stroke="#5e416f" stroke-width="7"></path>
+    <path d="M474 668L515 643H768L725 668Z" fill="#b6aad3" stroke="#5e416f" stroke-width="6"></path>
+
+    <!-- Employee, wearing a tie and an expression -->
+    <g transform="translate(605 680)">
+      <path d="M-52 94L-50 14Q0-16 50 14L52 94Z" fill="#d0f1e5" stroke="#30263b" stroke-width="6"></path>
+      <path d="M-22 18L0 55L22 18" fill="white" stroke="#30263b" stroke-width="4"></path>
+      <path d="M0 28L-11 42L0 84L11 42Z" fill="#ff475c"></path>
+
+      <rect x="-39" y="-87" width="78" height="100" rx="29" fill="#e9ac82" stroke="#30263b" stroke-width="6"></rect>
+      <path d="M-39-57Q-39-109 0-108
+               Q47-111 40-58
+               L23-76L-24-69Z" fill="#34223f"></path>
+
+      <circle cx="-17" cy="-35" r="6" fill="#201b29"></circle>
+      <circle cx="17" cy="-35" r="6" fill="#201b29"></circle>
+      <path d="M-12-5Q0 2 12-5" fill="none" stroke="#5b2b3e" stroke-width="4"></path>
+
+      <path d="M-50 37L-90 67M50 37L92 66" stroke="#e9ac82" stroke-width="13" stroke-linecap="round"></path>
+      <circle cx="-91" cy="67" r="11" fill="#e9ac82"></circle>
+      <circle cx="92" cy="66" r="11" fill="#e9ac82"></circle>
+    </g>
+
+    <!-- Desk -->
+    <path d="M457 772L742 772L774 801L429 801Z" fill="#ebce91" stroke="#53344b" stroke-width="7"></path>
+    <rect x="451" y="798" width="298" height="75" fill="#9a606a" stroke="#53344b" stroke-width="7"></rect>
+
+    <!-- Desk sign -->
+    <rect x="506" y="805" width="190" height="51" rx="4" fill="#f8ebc5" stroke="#573343" stroke-width="4"></rect>
+    <text x="601" y="826" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle" fill="#3d2839">
+      REALITY SUPPORT
+    </text>
+    <text x="601" y="844" font-family="monospace" font-size="12" text-anchor="middle" fill="#ab365d">
+      TICKET #000000
+    </text>
+
+    <!-- Tiny desktop computer -->
+    <rect x="650" y="706" width="83" height="63" rx="5" fill="#29263c" stroke="#ebe6e2" stroke-width="5"></rect>
+    <rect x="659" y="715" width="65" height="42" fill="#79ecbf"></rect>
+    <text x="691" y="733" text-anchor="middle" font-family="monospace" font-size="10" fill="#1d3440">ERROR</text>
+    <text x="691" y="746" text-anchor="middle" font-family="monospace" font-size="9" fill="#1d3440">YOU EXIST</text>
+    <path d="M692 768V781M670 781H714" stroke="#eee8e3" stroke-width="6"></path>
+
+  </g>
+
+  <!-- A receipt extruded from the skull -->
+  <path d="M545 262
+           L549 191L533 181L544 169L533 157
+           L547 143L536 131L551 117L539 105
+           L555 92L546 78L563 69L665 69
+           L683 81L672 95L688 108L675 120
+           L691 133L676 146L688 159L676 171
+           L691 185L675 197L682 266Z" fill="#fbefce" stroke="#5e3a4c" stroke-width="5"></path>
+
+  <g font-family="monospace" fill="#30233c" text-anchor="middle">
+    <text x="612" y="101" font-size="14" font-weight="bold">UNIVERSE</text>
+    <text x="612" y="119" font-size="11">ITEMIZED BILL</text>
+    <path d="M567 131H653" stroke="#30233c" stroke-dasharray="4 3"></path>
+    <text x="610" y="151" font-size="11">1 x SELF</text>
+    <text x="610" y="168" font-size="11">1 x VOID</text>
+    <text x="610" y="185" font-size="11">TAX: WHY</text>
+    <text x="610" y="211" font-size="13" font-weight="bold">TOTAL:</text>
+    <text x="610" y="230" font-size="19" font-weight="bold">YOU</text>
+    <text x="610" y="248" font-size="9">NO REFUNDS</text>
+  </g>
+
+  <!-- An unrelated emergency banana -->
+  <g transform="translate(190 403) rotate(-24)">
+    <path d="M-50-80
+             Q-100 40 12 96
+             Q84 124 117 33
+             Q45 77-13 29
+             Q-56-4-50-80Z" fill="#ffde56" stroke="#7b4c3d" stroke-width="8"></path>
+    <path d="M-50-81L-45-105" stroke="#6f483e" stroke-width="14" stroke-linecap="round"></path>
+    <path d="M5 94L19 103" stroke="#58372f" stroke-width="12"></path>
+    <circle cx="0" cy="11" r="6" fill="#563b43"></circle>
+    <circle cx="38" cy="22" r="6" fill="#563b43"></circle>
+    <path d="M8 50Q23 68 42 47" fill="none" stroke="#563b43" stroke-width="6"></path>
+    <text x="1" y="141" font-family="monospace" font-size="13" fill="#fff5ab" text-anchor="middle">WITNESS</text>
+  </g>
+
+  <!-- Institutional labels applied to impossibility -->
+  <g font-family="monospace" text-anchor="middle">
+    <text x="600" y="1104" fill="#e5f8d9" font-size="33" font-weight="bold" letter-spacing="3">
+      PLEASE HOLD.
+    </text>
+    <text x="600" y="1145" fill="#ffa0c4" font-size="19" letter-spacing="2">
+      YOUR EXISTENCE IS IMPORTANT TO US.
+    </text>
+    <text x="600" y="1176" fill="#b4a0c9" font-size="13">
+      ESTIMATED WAIT TIME: BEFORE TIME EXISTED
+    </text>
+  </g>
+
+  <!-- Final administrative intervention -->
+  <g transform="translate(1030 1076) rotate(13)">
+    <rect x="-70" y="-30" width="140" height="60" fill="none" stroke="#f46a77" stroke-width="5"></rect>
+    <text text-anchor="middle" y="-3" font-family="monospace" font-size="14" font-weight="bold" fill="#f46a77">
+      APPROVED
+    </text>
+    <text text-anchor="middle" y="17" font-family="monospace" font-size="11" fill="#f46a77">
+      BY NOBODY
+    </text>
+  </g>
+
+</svg>

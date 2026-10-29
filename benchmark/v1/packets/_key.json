@@ -1,0 +1,146 @@
+{
+  "P01": {
+    "source": "B17",
+    "kind": "response",
+    "method": "native",
+    "family": "design"
+  },
+  "P02": {
+    "source": "B01",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P03": {
+    "source": "B22",
+    "kind": "response",
+    "method": "native",
+    "family": "conceptual"
+  },
+  "P04": {
+    "source": "B09",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P05": {
+    "source": "B24",
+    "kind": "response",
+    "method": "native",
+    "family": "conceptual"
+  },
+  "P06": {
+    "source": "B13",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P07": {
+    "source": "B11",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P08": {
+    "source": "B04",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P09": {
+    "source": "B14",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P10": {
+    "source": "B03",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P11": {
+    "source": "B16",
+    "kind": "response",
+    "method": "native",
+    "family": "photography"
+  },
+  "P12": {
+    "source": "B05",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P13": {
+    "source": "B02",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P14": {
+    "source": "B07",
+    "kind": "response",
+    "method": "native",
+    "family": "drawing"
+  },
+  "P15": {
+    "source": "B20",
+    "kind": "response",
+    "method": "native",
+    "family": "text"
+  },
+  "P16": {
+    "source": "B19",
+    "kind": "response",
+    "method": "native",
+    "family": "design"
+  },
+  "P17": {
+    "source": "B06",
+    "kind": "response",
+    "method": "native",
+    "family": "painting"
+  },
+  "P18": {
+    "source": "B10",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P19": {
+    "source": "B23",
+    "kind": "response",
+    "method": "native",
+    "family": "conceptual"
+  },
+  "P20": {
+    "source": "B12",
+    "kind": "response",
+    "method": "native",
+    "family": "sculpture"
+  },
+  "P21": {
+    "source": "B21",
+    "kind": "response",
+    "method": "native",
+    "family": "text"
+  },
+  "P22": {
+    "source": "B08",
+    "kind": "response",
+    "method": "native",
+    "family": "drawing"
+  },
+  "P23": {
+    "source": "B15",
+    "kind": "response",
+    "method": "native",
+    "family": "photography"
+  },
+  "P24": {
+    "source": "B18",
+    "kind": "response",
+    "method": "native",
+    "family": "design"
+  }
+}

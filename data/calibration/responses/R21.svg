@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <title>The Shape of What Cannot Be Said</title>
+  <desc>
+    A red circle becomes a sentence.
+    A sentence becomes a horizon.
+    The horizon becomes a mouth.
+    The mouth releases a word that casts the shadow of a circle.
+    What is seen describes what is said;
+    what is said constructs what is seen.
+  </desc>
+
+  <defs>
+    <linearGradient id="paper" x2="0" y2="1">
+      <stop stop-color="#F5F0E6"></stop>
+      <stop offset="1" stop-color="#E8E1D3"></stop>
+    </linearGradient>
+
+    <linearGradient id="red" x2="1" y2="1">
+      <stop stop-color="#F05A47"></stop>
+      <stop offset="1" stop-color="#9E282A"></stop>
+    </linearGradient>
+
+    <clipPath id="circleClip">
+      <circle cx="600" cy="410" r="210"></circle>
+    </clipPath>
+
+    <path id="upperArc" d="M 326,410 A 274,274 0 0 1 874,410"></path>
+    <path id="lowerArc" d="M 326,410 A 274,274 0 0 0 874,410"></path>
+
+    <pattern id="lines" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 12 L12 0" stroke="#F5F0E6" stroke-width="1" opacity=".25"></path>
+    </pattern>
+
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="13"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#paper)"></rect>
+
+  <!-- The visual is described verbally. -->
+  <g fill="#252726" font-family="Georgia, serif" text-anchor="middle">
+    <text x="600" y="95" font-size="20" letter-spacing="7">
+      A DESCRIPTION OF A CIRCLE
+    </text>
+    <text x="600" y="135" font-size="15" font-style="italic">
+      It is red. It is round. It is almost silent.
+    </text>
+  </g>
+
+  <!-- The circle is also a field of language. -->
+  <circle cx="600" cy="410" r="210" fill="url(#red)"></circle>
+
+  <g clip-path="url(#circleClip)">
+    <rect x="390" y="200" width="420" height="420" fill="url(#lines)"></rect>
+    <g font-family="Georgia, serif" fill="#F9EDE4" text-anchor="middle" opacity=".86">
+      <text x="600" y="294" font-size="19" letter-spacing="4">
+        I AM A COLOR
+      </text>
+      <text x="600" y="336" font-size="25">
+        that has learned
+      </text>
+      <text x="600" y="377" font-size="30" font-style="italic">
+        to occupy space.
+      </text>
+      <text x="600" y="425" font-size="17" letter-spacing="5">
+        I HAVE NO CORNERS
+      </text>
+      <text x="600" y="470" font-size="26">
+        and nowhere to end
+      </text>
+      <text x="600" y="511" font-size="23" font-style="italic">
+        except where I began.
+      </text>
+      <text x="600" y="553" font-size="17" letter-spacing="4">
+        LOOK AT ME.
+      </text>
+    </g>
+  </g>
+
+  <circle cx="600" cy="410" r="210" fill="none" stroke="#252726" stroke-width="2"></circle>
+
+  <!-- Words orbit the thing they attempt to define. -->
+  <g font-family="Georgia, serif" font-size="22" letter-spacing="3" fill="#252726">
+    <text>
+      <textPath href="#upperArc" startOffset="50%" text-anchor="middle">
+        THE WORD IS NOT THE THING
+      </textPath>
+    </text>
+    <text>
+      <textPath href="#lowerArc" startOffset="50%" text-anchor="middle">
+        THE THING IS NOT WITHOUT WORDS
+      </textPath>
+    </text>
+  </g>
+
+  <!-- The verbal becomes a drawing. -->
+  <path d="M120 733 H1080" stroke="#252726" stroke-width="1" opacity=".35"></path>
+
+  <g fill="#252726" font-family="Georgia, serif" text-anchor="middle">
+    <text x="600" y="706" font-size="17" letter-spacing="6">
+      A SENTENCE ABOUT DISAPPEARING
+    </text>
+  </g>
+
+  <!-- Letters literally form a horizon and its absence. -->
+  <g font-family="Georgia, serif" font-size="57" font-weight="bold" text-anchor="middle">
+    <text x="600" y="810" fill="#252726" textLength="970" lengthAdjust="spacingAndGlyphs">
+      THE HORIZON IS A LINE
+    </text>
+    <text x="600" y="873" fill="#252726" textLength="970" lengthAdjust="spacingAndGlyphs">
+      WHERE THE WORLD
+    </text>
+    <text x="600" y="936" fill="#252726" textLength="970" lengthAdjust="spacingAndGlyphs">
+      STOPS SPEAKING
+    </text>
+  </g>
+
+  <!-- The sentence transforms into an actual horizon. -->
+  <path d="M115 957 H1085" stroke="#252726" stroke-width="4"></path>
+
+  <!-- Below it, language falls away into a curved silence. -->
+  <path d="M350 987 Q600 1123 850 987" fill="none" stroke="#252726" stroke-width="3"></path>
+  <path d="M418 1000 Q600 1065 782 1000" fill="none" stroke="#AB3432" stroke-width="9" stroke-linecap="round"></path>
+
+  <ellipse cx="600" cy="1114" rx="153" ry="17" fill="#252726" opacity=".12" filter="url(#soft)"></ellipse>
+
+  <!-- A small word becomes a visible object. -->
+  <g text-anchor="middle" font-family="Georgia, serif">
+    <text x="600" y="1092" font-size="39" fill="#AB3432" font-style="italic">
+      silence
+    </text>
+    <text x="600" y="1165" font-size="13" fill="#252726" letter-spacing="4">
+      WHAT YOU READ IS WHAT YOU SEE
+    </text>
+  </g>
+</svg>

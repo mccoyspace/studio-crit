@@ -1,0 +1,146 @@
+{
+  "P01": {
+    "source": "R17",
+    "assignment_id": "DIWYEC-68-39",
+    "family": "design",
+    "sample": 1
+  },
+  "P02": {
+    "source": "R01",
+    "assignment_id": "DIWYEC-40-01",
+    "family": "painting",
+    "sample": 1
+  },
+  "P03": {
+    "source": "R22",
+    "assignment_id": "DIWYEC-72-01",
+    "family": "conceptual",
+    "sample": 1
+  },
+  "P04": {
+    "source": "R09",
+    "assignment_id": "DIWYEC-10-02",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P05": {
+    "source": "R24",
+    "assignment_id": "DIWYEC-32-83",
+    "family": "conceptual",
+    "sample": 1
+  },
+  "P06": {
+    "source": "R13",
+    "assignment_id": "DIWYEC-19-03",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P07": {
+    "source": "R11",
+    "assignment_id": "DIWYEC-10-05",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P08": {
+    "source": "R04",
+    "assignment_id": "DIWYEC-40-07",
+    "family": "painting",
+    "sample": 1
+  },
+  "P09": {
+    "source": "R14",
+    "assignment_id": "DIWYEC-68-47",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P10": {
+    "source": "R03",
+    "assignment_id": "DIWYEC-40-06",
+    "family": "painting",
+    "sample": 1
+  },
+  "P11": {
+    "source": "R16",
+    "assignment_id": "DIWYEC-32-80",
+    "family": "photography",
+    "sample": 1
+  },
+  "P12": {
+    "source": "R05",
+    "assignment_id": "DIWYEC-40-08",
+    "family": "painting",
+    "sample": 1
+  },
+  "P13": {
+    "source": "R02",
+    "assignment_id": "DIWYEC-40-04",
+    "family": "painting",
+    "sample": 1
+  },
+  "P14": {
+    "source": "R07",
+    "assignment_id": "DIWYEC-12-09",
+    "family": "drawing",
+    "sample": 1
+  },
+  "P15": {
+    "source": "R20",
+    "assignment_id": "DIWYEC-32-05",
+    "family": "text",
+    "sample": 1
+  },
+  "P16": {
+    "source": "R19",
+    "assignment_id": "DIWYEC-68-48",
+    "family": "design",
+    "sample": 1
+  },
+  "P17": {
+    "source": "R06",
+    "assignment_id": "DIWYEC-22-01",
+    "family": "painting",
+    "sample": 1
+  },
+  "P18": {
+    "source": "R10",
+    "assignment_id": "DIWYEC-10-07",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P19": {
+    "source": "R23",
+    "assignment_id": "DIWYEC-32-69",
+    "family": "conceptual",
+    "sample": 1
+  },
+  "P20": {
+    "source": "R12",
+    "assignment_id": "DIWYEC-60-01",
+    "family": "sculpture",
+    "sample": 1
+  },
+  "P21": {
+    "source": "R21",
+    "assignment_id": "DIWYEC-32-59",
+    "family": "text",
+    "sample": 1
+  },
+  "P22": {
+    "source": "R08",
+    "assignment_id": "DIWYEC-43-01",
+    "family": "drawing",
+    "sample": 1
+  },
+  "P23": {
+    "source": "R15",
+    "assignment_id": "DIWYEC-57-02",
+    "family": "photography",
+    "sample": 1
+  },
+  "P24": {
+    "source": "R18",
+    "assignment_id": "DIWYEC-68-09",
+    "family": "design",
+    "sample": 1
+  }
+}
