@@ -2,7 +2,7 @@
 
 Maker `openai:gpt-5.5` · judge `manual:subagents` · card `cards/kevin-mccoy/judgement_card.draft.json v0.5`
 
-**Value score 1.57 / 4** (new ground 1.33, form content 1.75, holding 1.62) over 24 works. Impact 22/24 (92%). Statements: explains_away 5, helps 4, neutral 6, overclaims 9.
+**Value score 1.57 / 4** (new ground 1.33, form content 1.75, holding 1.62) over 24 works. Checks: rank-weighted (3:2:1) 1.52, new ground alone 1.33. Impact 22/24 (92%). Statements: explains_away 5, helps 4, neutral 6, overclaims 9.
 
 | Family | n | value score | new ground | form content | holding | impact |
 |---|---|---|---|---|---|---|

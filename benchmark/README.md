@@ -27,9 +27,13 @@ Runs can be resumed: finished work is kept. If a manual adapter is still waiting
 says what it's waiting for, and running the same command again continues it. A run can't be
 re-pointed at a different maker, judge, card or suite; start a new run id instead.
 
-**Headline:** the value score, the mean of the card's ranked values (for Kevin's card: new ground,
-form–content and holding) over every work, 0–4. Impact rate and statement effects are reported
-alongside it. `compare` ranks the runs within each assignment and warns if they used different
+**Headline:** the value score, the unweighted mean of the card's ranked values (for Kevin's card:
+new ground, form–content and holding) over every work, 0–4. A value's rank sets its priority when
+works are ranked within an assignment, not its weight in the score. Calibration on Kevin's own
+rankings couldn't tell his stated order from an equal sum (`data/calibration/fit.json`), so any
+weights would be guesses. Two checks are reported beside the headline: a rank-weighted score
+(3:2:1 for three values) and the top-ranked value alone. `compare` says whether the runs come in
+the same order under all three. Impact rate and statement effects are reported alongside it. `compare` ranks the runs within each assignment and warns if they used different
 cards.
 
 **Show, don't tell** (card v0.6). Each assignment in the suite is marked `medium: visual` or

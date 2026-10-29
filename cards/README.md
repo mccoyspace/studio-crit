@@ -109,7 +109,7 @@ python3 -I tools/bench.py run my-run --maker openai:gpt-5.5 --judge manual:me --
 |---|---|
 | `values` | The core. Each has a `value_id` (snake_case), `label`, `definition`, `diagnostic_questions` and `indicators` (signs of strength and weakness). |
 | `values[impact]` | The gate, which is required: `"gate": true` with `value_id` `"impact"`. Judges answer it yes or no. Its `decision` says how strict it is: should competent but familiar work pass, and be marked down on the other values instead? |
-| `rank` | The order of importance. Ranked values make the headline score (their mean, 0–4). Use `null` for a value that's scored but kept out of the headline, as Kevin's card does with economy. |
+| `rank` | The order of importance. Ranked values make the headline score: their unweighted mean, 0–4. Rank orders works within an assignment, but doesn't weight the score; reports show a rank-weighted score beside it as a check. Use `null` for a value that's scored but kept out of the headline, as Kevin's card does with economy. |
 | `thesis`, `positionality`, `touchstones` | What makes work matter to you, who you judge as, and an example and counterexample. |
 | `fluent_failure` | The polished, competent failure you most want caught, its signals, and which value catches it. |
 | `reading_assignments`, `looking` | How you read an assignment (what earns credit beyond a literal answer), and the order you look in. |

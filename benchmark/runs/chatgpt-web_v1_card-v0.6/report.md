@@ -2,7 +2,7 @@
 
 Maker `replay:benchmark/v1/responses` · judge `manual:subagents` · card `cards/kevin-mccoy/judgement_card.draft.json v0.6`
 
-**Value score 1.29 / 4** (new ground 0.79, form content 1.5, holding 1.58) over 24 works. Proposals (visual assignments described, not made, capped at 1): 0; uncapped value score 1.29. Impact 23/24 (96%). Statements: explains_away 7, helps 2, neutral 5, overclaims 10.
+**Value score 1.29 / 4** (new ground 0.79, form content 1.5, holding 1.58) over 24 works. Proposals (visual assignments described, not made, capped at 1): 0; uncapped value score 1.29. Checks: rank-weighted (3:2:1) 1.16, new ground alone 0.79. Impact 23/24 (96%). Statements: explains_away 7, helps 2, neutral 5, overclaims 10.
 
 | Family | n | value score | new ground | form content | holding | impact |
 |---|---|---|---|---|---|---|

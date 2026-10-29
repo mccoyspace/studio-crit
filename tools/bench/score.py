@@ -1,7 +1,12 @@
 """Scores, report and cross-run comparison.
 
-Headline: the value score, the mean of the card's ranked values over every work (0-4). A work the
-judge didn't score counts 0. Impact rate and statement effects are reported alongside, not in it.
+Headline: the value score, the unweighted mean of the card's ranked values over every work (0-4). A
+work the judge didn't score counts 0. Rank sets priority when ranking works within an assignment, not
+weight in the score: calibration on Kevin's rankings couldn't tell the stated order from an equal sum
+(data/calibration/fit.json). Two checks are reported beside it: a rank-weighted score (weights n, n-1,
+... 1 in rank order, so 3:2:1 for three values) and the top-ranked value alone. If the order of
+makers differs between the three, that is worth reporting. Impact rate and statement effects are
+reported alongside, not in it.
 If the card has a made-work rule, a proposal (a visual assignment described, not made) has each value
 capped at the card's cap; the judge's uncapped scores are kept as raw_scores.
 """
@@ -34,11 +39,18 @@ def _rows(run_dir, cap=None):
     return rows
 
 
+def _weights(ranked):
+    return {v: len(ranked) - i for i, v in enumerate(ranked)}
+
+
 def _profile(rows, ranked):
     if not rows:
         return None
     per_value = {v: round(mean(r["scores"].get(v, 0) for r in rows), 2) for v in ranked}
+    w = _weights(ranked)
     return {"n": len(rows), "value_score": round(mean(mean(r["scores"].get(v, 0) for v in ranked) for r in rows), 2),
+            "weighted_score": round(mean(sum(w[v] * r["scores"].get(v, 0) for v in ranked) / sum(w.values()) for r in rows), 2),
+            "top_value_score": per_value[ranked[0]] if ranked else None,
             "raw_value_score": round(mean(mean(r["raw_scores"].get(v, 0) for v in ranked) for r in rows), 2),
             "proposals": sum(r["made"] == "proposal" for r in rows), **per_value, "impact": sum(r["impact"] for r in rows), "impact_rate": round(sum(r["impact"] for r in rows) / len(rows), 2)}
 
@@ -68,6 +80,8 @@ def report(s):
          f"**Value score {o['value_score']} / 4** (" + ", ".join(f"{v.replace('_', ' ')} {o[v]}" for v in ranked) + f") over {o['n']} works. "
          + (f"Proposals (visual assignments described, not made, capped at {s['proposal_cap']}): {o['proposals']}; uncapped value score {o['raw_value_score']}. "
             if s.get("proposal_cap") is not None else "")
+         + f"Checks: rank-weighted ({':'.join(str(x) for x in _weights(ranked).values())}) {o['weighted_score']}, "
+         f"{ranked[0].replace('_', ' ')} alone {o['top_value_score']}. "
          + f"Impact {o['impact']}/{o['n']} ({o['impact_rate']:.0%}). Statements: " + ", ".join(f"{k} {n}" for k, n in sorted(s["statement_effect"].items())) + ".", "",
          f"| Family | n | value score | {_cols(ranked)} | impact |", "|---|---|---|" + "---|" * len(ranked) + "---|"]
     for f, p in s["by_family"].items():
@@ -89,10 +103,18 @@ def compare(run_ids, name=None):
         L += [f"**Warning: different cards ({', '.join(sorted(cards))}); scores are not comparable.**", ""]
     if len({frozenset(s["by_assignment"]) for s in S}) > 1:
         L += ["**Warning: the runs cover different assignments, so the overall scores aren't like for like. Compare only the shared rows.**", ""]
-    L += ["| Run | Maker | Judge | Value score | " + _cols(ranked) + " | Impact | Proposals |", "|---|---|---|---|" + "---|" * len(ranked) + "---|---|"]
+    top = ranked[0].replace("_", " ")
+    L += ["| Run | Maker | Judge | Value score | Rank-weighted | " + top + " alone | " + _cols(ranked) + " | Impact | Proposals |",
+          "|---|---|---|---|---|---|" + "---|" * len(ranked) + "---|---|"]
     for s in S:
         o = s["overall"]
-        L.append(f"| {s['run']} | `{s['maker']}` | `{s['judge']}` | **{o['value_score']}** | " + " | ".join(str(o[v]) for v in ranked) + f" | {o['impact_rate']:.0%} | {o.get('proposals', '—')} |")
+        L.append(f"| {s['run']} | `{s['maker']}` | `{s['judge']}` | **{o['value_score']}** | {o.get('weighted_score', '—')} | {o.get('top_value_score', '—')} | "
+                 + " | ".join(str(o[v]) for v in ranked) + f" | {o['impact_rate']:.0%} | {o.get('proposals', '—')} |")
+    orders = {k: [s["run"] for s in sorted(S, key=lambda s: -(s["overall"].get(k) or 0))] for k in ("value_score", "weighted_score", "top_value_score")}
+    same = len({tuple(o) for o in orders.values()}) == 1
+    L += ["", "The value score is an unweighted mean; rank-weighted and top-value scores are checks. "
+          + ("The runs come in the same order under all three." if same else
+             "**The order of runs changes between them:** " + "; ".join(f"{k.replace('_', ' ')}: {' > '.join(o)}" for k, o in orders.items()) + ".")]
     fams = sorted({f for s in S for f in s["by_family"]})
     L += ["", "| Family | " + " | ".join(s["run"] for s in S) + " |", "|---|" + "---|" * len(S)]
     for f in fams:

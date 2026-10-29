@@ -2,7 +2,7 @@
 
 Maker `replay:benchmark/v1/responses` · judge `replay:benchmark/v1/judge_runs/claude-opus-5-5_card-v0.5` · card `cards/kevin-mccoy/judgement_card.draft.json v0.5`
 
-**Value score 1.25 / 4** (new ground 0.83, form content 1.54, holding 1.38) over 24 works. Impact 23/24 (96%). Statements: explains_away 3, helps 5, neutral 6, overclaims 10.
+**Value score 1.25 / 4** (new ground 0.83, form content 1.54, holding 1.38) over 24 works. Checks: rank-weighted (3:2:1) 1.16, new ground alone 0.83. Impact 23/24 (96%). Statements: explains_away 3, helps 5, neutral 6, overclaims 10.
 
 | Family | n | value score | new ground | form content | holding | impact |
 |---|---|---|---|---|---|---|

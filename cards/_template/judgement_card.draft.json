@@ -127,7 +127,8 @@
       "value_one",
       "value_two",
       "value_three"
-    ]
+    ],
+    "headline": "The headline value score is the unweighted mean of the ranked values. Rank sets priority when ranking works within an assignment, not weight in the score; reports also give a rank-weighted score and the top value alone as checks."
   },
   "media": {
     "documentation": "Judge the work as best the documentation allows; thin documentation limits the verdict, it isn't the work's failure.",

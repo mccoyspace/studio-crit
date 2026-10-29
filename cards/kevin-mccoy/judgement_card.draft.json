@@ -1,5 +1,5 @@
 {
-  "_status": "DRAFT 2026-10-29, v0.6: v0.5 plus the show-don't-tell rule (media.made_work), at the judge of record's direction after the GPT-5.5 run answered 11 visual assignments in text and the judge credited that as new ground. Earlier versions kept as judgement_card.v0.1-v0.5.json.",
+  "_status": "DRAFT 2026-10-29, v0.6: v0.5 plus the show-don't-tell rule (media.made_work), at the judge of record's direction after the GPT-5.5 run answered 11 visual assignments in text and the judge credited that as new ground. Earlier versions kept as judgement_card.v0.1-v0.5.json. Same version, 2026-10-29: scoring.headline added (a note for readers; not shown to the judge).",
   "judge_id": "kevin-mccoy",
   "name": "Kevin McCoy",
   "version": "0.6",
@@ -213,6 +213,7 @@
       "form_content",
       "holding"
     ],
+    "headline": "The headline value score is the unweighted mean of the ranked values. Rank sets priority when ranking works within an assignment, not weight in the score; reports also give a rank-weighted score and the top value alone as checks.",
     "status": "Tested on gold rankings (tools/calibration/fit_weights.py): the stated order, an equal sum, form-content first and holding first all agree with the judge on 10 of 12 gold pairs and contradict none, so gold doesn't distinguish them. The stated order is kept as the judge's own account. Open hypothesis, from controls only and so not applied: form_content may weigh more than new_ground once polish is involved. Economy was added after round 1, so it has no calibration verdicts yet; round 2 tests its place in the order."
   },
   "media": {

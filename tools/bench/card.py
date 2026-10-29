@@ -38,7 +38,7 @@ def _scrub(x):
 def blind(card, extra_leaks=()):
     """The judge's copy: no making-of fields, no evidence notes. Raises if anything evidence-like survives."""
     c = {k: v for k, v in card.items() if k not in INTERNAL and not k.startswith("_")}
-    c["scoring"] = {k: v for k, v in c.get("scoring", {}).items() if k != "status"}
+    c["scoring"] = {k: v for k, v in c.get("scoring", {}).items() if k not in ("status", "headline")}
     c["values"] = [{k: v for k, v in val.items() if k != "evidence"} for val in c.get("values", [])]
     c = _scrub(c)
     pattern = "|".join([LEAK, *map(re.escape, extra_leaks)])
