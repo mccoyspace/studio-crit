@@ -257,7 +257,7 @@ class ManualJudge:
         # outside the project, so the judge's folder holds nothing but what it may see (no key, no responses)
         rel = self.run_dir.resolve().relative_to(ROOT)
         name = self.run_dir.name if rel.parts[:2] == ("benchmark", "runs") else "__".join(rel.parts)
-        return Path(tempfile.gettempdir()) / "art-bench-export" / name
+        return Path(tempfile.gettempdir()) / "studio-crit-export" / name
 
     def export(self, step, views, card):
         d = self.folder()
