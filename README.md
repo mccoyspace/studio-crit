@@ -12,7 +12,7 @@ and Etiquette* (2009). The card in this repo is for the artist and art educator 
 | Path | Contents |
 |---|---|
 | `tools/bench/`, `tools/bench.py` | The pipeline: suite → maker → anonymized packets → blind judge (in two steps, crit order) → scores → report. |
-| `benchmark/v1/` | The first suite (24 assignments), the maker prompt, and the first ChatGPT run with its judge runs. |
+| `benchmark/v1/` | Suite v1 (24 assignments), the maker prompt, and a ChatGPT run with its judge runs. |
 | `benchmark/runs/` | Runs made with the pipeline, with scores, reports and comparisons. |
 | `cards/kevin-mccoy/` | The judgement card (every version, v0.1–v0.6) and the critical positions it was built from. |
 | `data/calibration/` | The calibration crit: works Kevin judged blind, which were then used to tune the card and test the model judge. |
